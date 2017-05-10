@@ -64,6 +64,8 @@ def calculateTotalAndPlotForShow(showName,characters,years):
     print("Correlation between "+showName+" viewership and ")
     for j in range(len(characters)):
         print("children named "+characters[j]+" : "+"{0:.3f}".format(corrList[j]))
+        
+        
 def main():
     
     #An array containg the years for which we have data
