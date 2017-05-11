@@ -77,19 +77,19 @@ def main():
     #First TV Show-The Big Bang Theory
     
         #pattern defining various character names
-    characters = ["Penny","Sheldon","Leonard","Raj","Howard"] #"Leonard"
+    characters = ["Penny","Sheldon","Raj","Howard"] #"Leonard"
     calculateTotalAndPlotForShow("The Big Bang Theory",characters,years)
 
     #Second TV Show- How I Met Your Mother
     
         #pattern defining various character names
-    characters = ["Barney","Robin","Ted","Lily","Marshall"] #"Lily"
+    characters = ["Barney","Robin","Ted","Marshall"] #"Lily"
     calculateTotalAndPlotForShow("HIMYM",characters,years)
     
     #Third TV Show- Game of Thrones
     
         #pattern defining various character names
-    characters = ["Daenerys","Khaleesi","Jon","Arya","Sansa","Tyrion"] #"Jon","Arya",
+    characters = ["Daenerys","Khaleesi","Sansa","Tyrion"] #"Jon","Arya",
     calculateTotalAndPlotForShow("GoT",characters,years)    
     
 main()
