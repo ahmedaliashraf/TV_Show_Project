@@ -66,6 +66,9 @@ def calculateTotalAndPlotForShow(showName,characters,years):
 
 
 def calculateTotalAndPlotSeparateForEachShowAndCharacter(showName,characters,years):
+    #path
+    path = "visuals/IndependentPlot/"
+    
     #list to hold corrlation for each character
     corrList= []
     
@@ -86,11 +89,18 @@ def calculateTotalAndPlotSeparateForEachShowAndCharacter(showName,characters,yea
         plt.ylabel("count")
         #plt.legend(loc = 0,fontsize = 'x-small')#Make a legend in upper left corner
         plt.show()
+        completeName = path+showName+"/"+characters[i]+".png"
+        #plt.savefig(completeName)
+        
     plt.title("Viewership of "+ showName)
     plt.plot(years, viewership, color='k', label="viewership") 
     plt.xlabel("year")
     plt.ylabel("count (in millions)")
     plt.show()
+    
+    completeName = showName+"/"+showName+"viewership.png"
+    #plt.savefig(completeName)
+    
     
     #print correlation between and children named after chracters
     print("Correlation between "+showName+" viewership and ")
@@ -110,7 +120,7 @@ def main():
     if pref != "S" and pref !="I":
         pref = input("Would you prefer Single (S) or Independent (I) plot: ").upper()
     
-    
+    print("\n")
     
     #First TV Show-The Big Bang Theory
     print("First TV Show-The Big Bang Theory")
