@@ -19,7 +19,7 @@ def readTxtFileWithPattern(fileName,pattern):
             count += int(splitName[2])
     return count
         
-def calculateTotalName(years,pattern):
+def calculateTotalWithPattern(years,pattern):
     count = []
     for i in range (len(years)):
         fileName = "nationalNameDataByYear\yob" + str(years[i])+ ".txt"
@@ -41,7 +41,7 @@ def calculateTotalAndPlotForShow(showName,characters,years):
     #For each character calculate total for each year and plot
     fig,(bx,ax) = plt.subplots(2,sharex=True)  #Setup figure and subplots
     for i in range(len(characters)):
-        countPerYear = calculateTotalName(years,characters[i])                      #Variable to store count for each year
+        countPerYear = calculateTotalWithPattern(years,characters[i])                      #Variable to store count for each year
         ax.plot(years, countPerYear, color=colors[i], label=characters[i])         #Plot name count with different color
         corrList.append(stats.correlation(viewership,countPerYear))
     bx.plot(years, viewership, color='k', label="viewership")    
@@ -64,6 +64,8 @@ def calculateTotalAndPlotForShow(showName,characters,years):
     print("Correlation between "+showName+" viewership and ")
     for j in range(len(characters)):
         print("children named "+characters[j]+" : "+"{0:.3f}".format(corrList[j]))
+        
+        
 def main():
     
     #An array containg the years for which we have data
