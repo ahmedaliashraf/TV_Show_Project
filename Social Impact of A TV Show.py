@@ -58,14 +58,45 @@ def calculateTotalAndPlotForShow(showName,characters,years):
     ax.legend(loc = 0,fontsize = 'x-small')#Make a legend in upper left corner
     bx.legend(loc = 0,fontsize = 'x-small')#Make a legend in upper left corner
     plt.show()
-    #plt.savefig("BigBang.jpeg")  
     
     #print correlation between and children named after chracters
     print("Correlation between "+showName+" viewership and ")
     for j in range(len(characters)):
         print("children named "+characters[j]+" : "+"{0:.3f}".format(corrList[j]))
-        
-        
+
+
+def calculateTotalAndPlotSeparateForEachShowAndCharacter(showName,characters,years):
+    #list to hold corrlation for each character
+    corrList= []
+    
+    #avaialble colors for character label in plot
+    colors = ['b','g','r','m','y','#FFD5F0','c']      
+    
+    #Obtain viwership data of TV Show(showName) by reading csv file
+    viewerData = pd.read_csv("viewershipData/" + str(showName) + ".csv")
+    viewership = [float(x) for x in viewerData['viewers']]   
+    
+    #For each character calculate total for each year and plot
+    for i in range(len(characters)):
+        countPerYear = calculateTotalWithPattern(years,characters[i])                      #Variable to store count for each year
+        corrList.append(stats.correlation(viewership,countPerYear))
+        plt.plot(years, countPerYear, color=colors[i], label=characters[i])         #Plot name count with different color
+        plt.title("Number of Newborn Named " + characters[i])
+        plt.xlabel("year")
+        plt.ylabel("count")
+        #plt.legend(loc = 0,fontsize = 'x-small')#Make a legend in upper left corner
+        plt.show()
+    plt.title("Viewership of "+ showName)
+    plt.plot(years, viewership, color='k', label="viewership") 
+    plt.xlabel("year")
+    plt.ylabel("count (in millions)")
+    plt.show()
+    
+    #print correlation between and children named after chracters
+    print("Correlation between "+showName+" viewership and ")
+    for j in range(len(characters)):
+        print("children named "+characters[j]+" : "+"{0:.3f}".format(corrList[j]))
+      
 def main():
     
     #An array containg the years for which we have data
@@ -74,22 +105,44 @@ def main():
     years = [1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,
              2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015]
     
+    #ask user preference of plot type
+    pref = input("Would you prefer Single (S) or Independent (I) plots: ").upper()
+    if pref != "S" and pref !="I":
+        pref = input("Would you prefer Single (S) or Independent (I) plot: ").upper()
+    
+    
+    
     #First TV Show-The Big Bang Theory
-    
+    print("First TV Show-The Big Bang Theory")
         #pattern defining various character names
-    characters = ["Penny","Sheldon","Raj","Howard"] #"Leonard"
-    calculateTotalAndPlotForShow("The Big Bang Theory",characters,years)
-
+    characters = ["Penny","Sheldon","Leonard","Raj","Leonard","Howard"] #"Leonard"
+    
+    if pref == "S":
+        calculateTotalAndPlotForShow("The Big Bang Theory",characters,years)
+    else:
+        calculateTotalAndPlotSeparateForEachShowAndCharacter("The Big Bang Theory",characters,years)
+    print("===============================================\n\n")
+    
     #Second TV Show- How I Met Your Mother
-    
+    print("Second TV Show- How I Met Your Mother")
         #pattern defining various character names
-    characters = ["Barney","Robin","Ted","Marshall"] #"Lily"
-    calculateTotalAndPlotForShow("HIMYM",characters,years)
+    characters = ["Barney","Robin","Ted","Lily","Marshall"] #"Lily"
+    
+    if pref == "S":
+        calculateTotalAndPlotForShow("HIMYM",characters,years)
+    else:
+        calculateTotalAndPlotSeparateForEachShowAndCharacter("HIMYM",characters,years)
+    print("===============================================\n\n")
     
     #Third TV Show- Game of Thrones
-    
+    print("Third TV Show- Game of Thrones")
         #pattern defining various character names
-    characters = ["Daenerys","Khaleesi","Sansa","Tyrion"] #"Jon","Arya",
-    calculateTotalAndPlotForShow("GoT",characters,years)    
+    characters = ["Daenerys","Khaleesi","Jon","Snow","Arya","Sansa","Tyrion"] #"Jon","Arya",
+    
+    if pref == "S":
+        calculateTotalAndPlotForShow("GoT",characters,years) 
+    else:
+        calculateTotalAndPlotSeparateForEachShowAndCharacter("GoT",characters,years)  
+    print("===============================================\n\n")
     
 main()
