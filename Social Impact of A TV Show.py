@@ -155,4 +155,5 @@ def main():
         calculateTotalAndPlotSeparateForEachShowAndCharacter("GoT",characters,years)  
     print("===============================================\n\n")
     
+    
 main()
