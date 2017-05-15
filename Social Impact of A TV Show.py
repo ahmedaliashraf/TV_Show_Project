@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import re
 import pandas as pd
 import stats
+import os
 
 def readTxtFileWithPattern(fileName,pattern):
     f = open(fileName)
@@ -27,6 +28,13 @@ def calculateTotalWithPattern(years,pattern):
     return count
 
 def calculateTotalAndPlotForShow(showName,characters,years):
+    #create path
+    path = "visuals/SinglePlot/"
+    
+    #Create directory if not exists
+    if not os.path.exists(path+showName):
+        os.makedirs(path+showName)
+        
     #list to hold corrlation for each character
     corrList= []
     
@@ -57,6 +65,11 @@ def calculateTotalAndPlotForShow(showName,characters,years):
     
     ax.legend(loc = 0,fontsize = 'x-small')#Make a legend in upper left corner
     bx.legend(loc = 0,fontsize = 'x-small')#Make a legend in upper left corner
+    
+    #save to folder
+    completeName = path+showName+"/"+showName+"ViwershipAndNewbornNamed.png"
+    plt.savefig(completeName)
+    #show plot
     plt.show()
     
     #print correlation between and children named after chracters
@@ -68,6 +81,10 @@ def calculateTotalAndPlotForShow(showName,characters,years):
 def calculateTotalAndPlotSeparateForEachShowAndCharacter(showName,characters,years):
     #path
     path = "visuals/IndependentPlot/"
+    
+    #Create directory if not exists
+    if not os.path.exists(path+showName):
+        os.makedirs(path+showName)
     
     #list to hold corrlation for each character
     corrList= []
@@ -88,19 +105,23 @@ def calculateTotalAndPlotSeparateForEachShowAndCharacter(showName,characters,yea
         plt.xlabel("year")
         plt.ylabel("count")
         #plt.legend(loc = 0,fontsize = 'x-small')#Make a legend in upper left corner
-        plt.show()
+        
+        #save to folder
         completeName = path+showName+"/"+characters[i]+".png"
-        #plt.savefig(completeName)
+        plt.savefig(completeName)
+        #show plot
+        plt.show()
+
         
     plt.title("Viewership of "+ showName)
     plt.plot(years, viewership, color='k', label="viewership") 
     plt.xlabel("year")
     plt.ylabel("count (in millions)")
+    #save to folder    
+    completeName = path+showName+"/"+showName+"viewership.png"
+    plt.savefig(completeName)
+    #show plot
     plt.show()
-    
-    completeName = showName+"/"+showName+"viewership.png"
-    #plt.savefig(completeName)
-    
     
     #print correlation between and children named after chracters
     print("Correlation between "+showName+" viewership and ")
