@@ -102,6 +102,10 @@ def calculateTotalAndPlotSeparateForEachShowAndCharacter(showName,characters,yea
         corrList.append(stats.correlation(viewership,countPerYear))
         plt.plot(years, countPerYear, color=colors[i], label=characters[i])         #Plot name count with different color
         plt.title("Number of Newborn Named " + characters[i])
+        
+        plt.text(max(years)-18,max(countPerYear)-3,"Correlation: "+"{0:.3f}".format(corrList[i]))
+        
+        #plt.xlabel("year\n\n"+"Correlation: "+"{0:.3f}".format(corrList[i]))
         plt.xlabel("year")
         plt.ylabel("count")
         #plt.legend(loc = 0,fontsize = 'x-small')#Make a legend in upper left corner
