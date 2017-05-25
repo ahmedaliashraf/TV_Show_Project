@@ -6,3 +6,5 @@ Game of Thrones, that either ran or still running in that time frame.
 
 Code setup will allow one to do this for year as far back as 1880 (the data is already available under the nationalNameDataByYear folder) 
 and any show (However, viewership data for the show will need to be added as .csv file under viewershipData folder). Of course, slight code adjustment in the main function will be necessary.
+
+Further explanation of the project available at https://macaulay.cuny.edu/eportfolios/afthermath/
