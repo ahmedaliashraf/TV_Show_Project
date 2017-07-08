@@ -180,9 +180,5 @@ def main():
         calculateTotalAndPlotSeparateForEachShowAndCharacter("GoT",characters,years)  
     print("===============================================\n\n")
     
-    characters = ["Yvonne","King-Prince"]
-    
-    calculateTotalAndPlotSeparateForEachShowAndCharacter("GoT",characters,years)
-    
     
 main()

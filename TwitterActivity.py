@@ -5,10 +5,10 @@
 
 
 ##Variables that contains the user credentials to access Twitter API 
-access_token = "Use Yours"
-access_token_secret = "Use Yours"
-consumer_key = "Use Yours"
-consumer_secret = "Use Yours"
+access_token = "Use yours"
+access_token_secret = "use yours"
+consumer_key = "Use yours"
+consumer_secret = "Use yours"
 
 import twitter
 
